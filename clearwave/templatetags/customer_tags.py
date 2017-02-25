@@ -9,6 +9,10 @@ def company_name():
     return settings.COMPANY_NAME
 
 @register.simple_tag
+def product_year():
+    return settings.PRODUCT_YEAR
+
+@register.simple_tag
 def customer_name():
     return customer_vars['CUSTOMER_NAME']
 

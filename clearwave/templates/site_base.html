@@ -8,7 +8,7 @@
 
 
 {% block head_css %}
-    <link href="{% static "css/default-light-white.css" %}" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="{% static "css/horizontal-blue-white.css" %}" id="dev-css">
 {% endblock %}
 
 
@@ -30,17 +30,7 @@
 
                 {% block body_nav %}
                 <!-- page sidebar -->
-                <div class="dev-page-sidebar">
 
-                    <ul class="dev-page-navigation">
-                        <li class="title">Menu</li>
-                        <li>
-                            <a href="#"><i class="fa fa-circle"></i> <span>Homepage</span></a>
-                        </li>
-                    </ul>
-
-                </div>
-                <!-- ./page sidebar -->
                 {% endblock body_nav %}
 
             {% block body_container %}
@@ -197,7 +187,7 @@
                 <ul class="dev-page-footer-controls">
                     <li><a class="tip" title="Settings"><i class="fa fa-cogs"></i></a></li>
                     <li><a class="tip" title="Support"><i class="fa fa-life-ring"></i></a></li>
-                    <li><a class="tip" title="Logoff"><i class="fa fa-power-off"></i></a></li>
+                    <li><a href="{% url 'account_logout' %}" class="tip" title="Logoff"><i class="fa fa-power-off"></i></a></li>
 
                     <li class="pull-right">
                         <a class="dev-page-sidebar-minimize tip" title="Toggle navigation"><i class="fa fa-outdent"></i></a>

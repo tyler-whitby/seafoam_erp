@@ -1,6 +1,7 @@
 import os
 import django.core.exceptions
 from .templatetags.customer_tags import *
+from datetime import datetime
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -243,3 +244,4 @@ LOGOUT_URL = 'account_logout'
 
 
 COMPANY_NAME = "Seafoam Data"
+PRODUCT_YEAR = str(datetime.now().year)

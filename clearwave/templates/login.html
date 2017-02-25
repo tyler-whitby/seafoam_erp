@@ -3,6 +3,7 @@
 {% load account_tags %}
 {% load i18n %}
 {% load bootstrap %}
+{% load customer_tags %}
 
 {% block head_title %}{% trans "Log in" %}{% endblock %}
 
@@ -10,12 +11,11 @@
     <div class="dev-page dev-page-login dev-page-login-v2">
 
             <div class="dev-page-login-block">
-                <a class="dev-page-login-block__logo">Intuitive</a>
+                <a class="dev-page-login-block__logo">{% company_name %} | {% product_name %}</a>
                 <div class="dev-page-login-block__form">
                     <div class="title"><strong>Welcome</strong>, please login</div>
                     <form method="POST" action="{% url "account_login" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
                         {% csrf_token %}
-
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
