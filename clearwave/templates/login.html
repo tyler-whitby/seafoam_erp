@@ -11,7 +11,9 @@
     <div class="dev-page dev-page-login dev-page-login-v2">
 
             <div class="dev-page-login-block">
-                <a class="dev-page-login-block__logo">{% company_name %} | {% product_name %}</a>
+                <a class="dev-page-login-block__logo">{% product_name %}</a>
+                <a class="login-tagline">by {% company_name %}</a>
+            <br/>
                 <div class="dev-page-login-block__form">
                     <div class="title"><strong>Welcome</strong>, please login</div>
                     <form method="POST" action="{% url "account_login" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>

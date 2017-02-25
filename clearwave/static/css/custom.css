@@ -1,0 +1,14 @@
+.dev-page .dev-page-login-block {
+    text-align: center;
+}
+.dev-page-login-block .login-tagline{
+    margin-bottom: 15px ;
+}
+.dev-page.dev-page-login .dev-page-login-block__logo {
+    margin-bottom: 0px;
+}
+
+.dev-page .dev-page-login-block__form {
+    margin-top: 30px;
+
+}
