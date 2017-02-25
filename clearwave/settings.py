@@ -94,6 +94,7 @@ TEMPLATES = [
                 "account.context_processors.account",
                 "pinax_theme_bootstrap.context_processors.theme",
                 'django.template.context_processors.request',  # grappelli
+
             ],
         },
     },
@@ -238,3 +239,6 @@ GRAPPELLI_ADMIN_TITLE = ' '.join((product_name(),'Administration'))
 
 LOGIN_URL = 'account_login'
 LOGOUT_URL = 'account_logout'
+
+
+COMPANY_NAME = "Seafoam Data"

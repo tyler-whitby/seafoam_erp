@@ -2,10 +2,8 @@
 
 {% load i18n %}
 {% load customer_tags %}
-{% customer_name as customer_name %}
-{% product_name as product_name %}
 
-{% block head_title %}{{ customer_name }} | {{ product_name }}{% endblock %}
+{% block head_title %}Home{% endblock %}
 
 {% block body_class %}home{% endblock %}
 
@@ -13,7 +11,8 @@
     <section class="jumbotron">
         <div class="container">
             {% include "_messages.html" %}
-            <h1>{% blocktrans %}Welcome to<br>Clearwave ERP{% endblocktrans %}</h1>
+            <h1>Welcome to <br/>
+                {% product_name %} ERP</h1>
             <p>
                 {% blocktrans %}
                 A fully integrated, custom made solution for your client relations, inventory analytics,
