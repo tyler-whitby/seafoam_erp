@@ -48,6 +48,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'grappelli', #grappelli
+    "account",
 
     "django.contrib.admin",
     "django.contrib.auth",
@@ -62,7 +63,7 @@ INSTALLED_APPS = [
     "pinax_theme_bootstrap",
 
     # external
-    "account",
+
     "pinax.eventlog",
     "pinax.webanalytics",
 
@@ -241,6 +242,7 @@ GRAPPELLI_ADMIN_TITLE = ' '.join((product_name(),'Administration'))
 
 LOGIN_URL = 'account_login'
 LOGOUT_URL = 'account_logout'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
 
 
 COMPANY_NAME = "Seafoam Data"

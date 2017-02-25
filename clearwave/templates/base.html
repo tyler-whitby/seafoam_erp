@@ -57,7 +57,7 @@
 
     {% block body_base %}
     <body>
-        {% block body_base_extend %}
+        {% block body_base_inner %}
         
         {% endblock %}
     </body>
@@ -91,10 +91,13 @@
         <script type="text/javascript" src="{% static "js/demo-dashboard.js" %}"></script>
         <!-- ./javascript -->
 
-        {% block scripts %}
-        {% endblock scripts %}
+        {% block site_scripts %}
+        {% endblock site_scripts %}
 
     {% endblock body_scripts %}
 
 </html>
+    {% block forms_container %}
+    {% endblock %}
+
 {% endblock html %}

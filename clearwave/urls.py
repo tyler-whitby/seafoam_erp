@@ -11,7 +11,9 @@ from account import views as acc_views
 urlpatterns = [
     url(r"^$", TemplateView.as_view(template_name="homepage.html"), name="home"),
     url(r"^admin/", include(admin.site.urls)),
-    url(r"^account/", acc_views.LoginView.as_view(template_name="login.html"), name='login'),
+    url(r"^account/login/$", acc_views.LoginView.as_view(template_name="login.html"), name='account_login'),
+    url(r"^account/logout/$", acc_views.LogoutView.as_view(template_name="logout.html"), name='account_logout'),
+
     url(r"^account/", include("account.urls")),
 
 ]

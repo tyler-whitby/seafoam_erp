@@ -1,3 +1,5 @@
+
+/* login styling, centering subtitle...*/
 .dev-page .dev-page-login-block {
     text-align: center;
 }
@@ -12,3 +14,10 @@
     margin-top: 30px;
 
 }
+/* Fix sixing of user name in nav bar */
+.dev-page .dev-page-header .dph-buttons .dph-user-text {
+    line-height: 55px;
+    min-width: 70px;
+    text-align: center;
+}
+

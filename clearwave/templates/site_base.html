@@ -17,7 +17,7 @@
     {% block extra_head %}{% endblock %}
 {% endblock %}
 
-{% block body_base_extend %}
+{% block body_base_inner %}
     <!-- page wrapper -->
         <div class="dev-page">
 
@@ -42,8 +42,10 @@
 
                         <!-- page title -->
                         <div class="page-title">
+                            {% block body_container_page-title %}
                             <h1>Title</h1>
                             <p>Subtitle</p>
+                            {% endblock body_container_page-title %}
 
                             <ul class="breadcrumb">
                                 <li><a href="#">breadcrumb</a></li>
@@ -74,122 +76,13 @@
             </div>
             <!-- ./page container -->
 
-            <!-- right bar -->
-            <div class="dev-page-rightbar">
-                <div class="rightbar-chat">
-
-                    <div class="rightbar-chat-frame-contacts scroll">
-                        <div class="rightbar-title">
-                            <h3>Messages</h3>
-                            <a href="#" class="btn btn-default btn-rounded rightbar-close pull-right"><span class="fa fa-times"></span></a>
-                        </div>
-                        <ul class="contacts">
-                            <li class="title">online</li>
-                            <li>
-                                <a href="#" class="status online">
-                                    <img src="{% static "assets/images/users/user_1.jpg" %}" title="Aqvatarius"> John Doe
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="status online">
-                                    <img src="{% static "assets/images/users/user_2.jpg" %}" title="Aqvatarius"> Shannon Freeman
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="status away">
-                                    <img src="{% static "assets/images/users/user_3.jpg" %}" title="Aqvatarius"> Devin Stephens
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="status away">
-                                    <img src="{% static "assets/images/users/user_4.jpg" %}" title="Aqvatarius"> Marissa George
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="status dont">
-                                    <img src="{% static "assets/images/users/user_5.jpg" %}" title="Aqvatarius"> Sydney Reeves
-                                </a>
-                            </li>
-                            <li class="title">offline</li>
-                            <li>
-                                <a href="#" class="status">
-                                    <img src="{% static "assets/images/users/user_6.jpg" %}" title="Aqvatarius"> Kaitlynn Bowen
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="status">
-                                    <img src="{% static "assets/images/users/user_7.jpg" %}" title="Aqvatarius"> Karen Spencer
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="status">
-                                    <img src="{% static "assets/images/users/user_8.jpg" %}" title="Aqvatarius"> Darrell Wolfe
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="rightbar-chat-frame-chat">
-                        <div class="user">
-                            <div class="user-panel">
-                                <a href="#" class="btn btn-default btn-rounded rightbar-chat-close"><span class="fa fa-angle-left"></span></a>
-                                <a href="#" class="btn btn-default btn-rounded pull-right"><span class="fa fa-user"></span></a>
-                            </div>
-                            <div class="user-info">
-                                <div class="user-info-image status online">
-                                    <img src="{% static "assets/images/users/user_1.jpg" %}">
-                                </div>
-                                <h5>Devin Stephens</h5>
-                                <span>UI/UX Designer</span>
-                            </div>
-                        </div>
-                        <div class="chat-wrapper scroll">
-                            <ul class="chat" id="rightbar_chat">
-                                <li class="inbox">
-                                    Hi, you have a second? Need to ask you something.
-                                    <span>about 1h ago</span>
-                                </li>
-                                <li class="sent">
-                                    Sure i have...
-                                    <span>59min ago</span>
-                                </li>
-                                <li class="inbox">
-                                    It's about latest design you did...
-                                    <span>14min ago</span>
-                                </li>
-                                <li class="sent">
-                                    I will do my best to help you
-                                    <span>2min ago</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <form class="form" action="#" method="post" id="rightbar_chat_form">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-default"><i class="fa fa-paperclip"></i></button>
-                                    </div>
-                                    <input type="text" class="form-control" name="message">
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default">Send</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-            <!-- ./right bar -->
 
             <!-- page footer -->
             <div class="dev-page-footer dev-page-footer-fixed"> <!-- dev-page-footer-closed dev-page-footer-fixed -->
                 <ul class="dev-page-footer-controls">
                     <li><a class="tip" title="Settings"><i class="fa fa-cogs"></i></a></li>
                     <li><a class="tip" title="Support"><i class="fa fa-life-ring"></i></a></li>
-                    <li><a href="{% url 'account_logout' %}" class="tip" title="Logoff"><i class="fa fa-power-off"></i></a></li>
-
+                    <li><a href="{% url "account_logout" %}" name="logoutLinkButton" id="id-logout-LinkButton" class="tip" title="Logoff"><i class="fa fa-power-off"></i></a></li>
                     <li class="pull-right">
                         <a class="dev-page-sidebar-minimize tip" title="Toggle navigation"><i class="fa fa-outdent"></i></a>
                     </li>
@@ -297,17 +190,9 @@
 
                     <!-- projects -->
                     <div class="dev-page-footer-container-content" id="footer_content_3">
-                        <ul class="dev-list-projects">
-                            <li><a href="#" class="active">Intuitive</a></li>
-                            <li><a href="#">Atlant</a></li>
-                            <li><a href="#">Gemini</a></li>
-                            <li><a href="#">Taurus</a></li>
-                            <li><a href="#">Leo</a></li>
-                            <li><a href="#">Aries</a></li>
-                            <li><a href="#">Virgo</a></li>
-                            <li><a href="#">Aquarius</a></li>
-                            <li><a href="#" class="dev-list-projects-add"><i class="fa fa-plus"></i></a></li>
-                        </ul>
+                        {% block body_base_ %}
+
+                        {% endblock %}
                     </div>
                     <!-- ./projects -->
                 </div>
@@ -320,35 +205,31 @@
             </div>
             <!-- ./page footer -->
 
-            <!-- page search -->
-            <div class="dev-search">
-                <div class="dev-search-container">
-                    <div class="dev-search-form">
-                    <form action="index.html" method="post">
-                        <div class="dev-search-field">
-                            <input type="text" placeholder="Search..." value="Nature">
-                        </div>
-                    </form>
-                    </div>
-                    <div class="dev-search-results"></div>
-                </div>
-            </div>
-            <!-- page search -->
+
         </div>
         <!-- ./page wrapper -->
 
-{% endblock body_base_extend %}
+{% endblock body_base_inner %}
 
 
 {% block footer %}
 {% endblock %}
 
 
-{% block scripts %}
 
-{% endblock %}
 
 {% block extra_body_base %}
     {% analytics %}
     {% block extra_body %}{% endblock %}
 {% endblock %}
+
+{% block forms_container %}
+
+{% endblock forms_container %}
+
+{% block site_scripts %}
+
+    {% block page_scripts %}
+    {% endblock page_scripts %}
+
+{% endblock site_scripts %}

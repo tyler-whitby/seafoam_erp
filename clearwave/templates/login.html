@@ -7,7 +7,7 @@
 
 {% block head_title %}{% trans "Log in" %}{% endblock %}
 
-{% block body_base_extend %}
+{% block body_base %}
     <div class="dev-page dev-page-login dev-page-login-v2">
 
             <div class="dev-page-login-block">
@@ -34,13 +34,13 @@
                             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                         {% endif %}
                         <div class="form-group no-border margin-top-20">
-                            <button class="btn btn-success btn-block">Login</button>
+           e                 <button class="btn btn-success btn-block">Login</button>
                         </div>
                         <p><a href="#">Forgot Password?</a></p>
                     </form>
                 </div>
                 <div class="dev-page-login-block__footer">
-                    © 2015 <strong>Aqvatarius</strong>. All rights reserved.
+                    © {% product_year %} <strong>{% company_name %}</strong>. Licensed to {% customer_name %}.
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
         <div class="col-md-4">
         </div>
     </div>
-{% endblock %}
+{% endblock body_base %}
 
 {% block scripts %}
     {{ block.super }}

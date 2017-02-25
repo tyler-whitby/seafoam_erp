@@ -1,0 +1,23 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Log out" %}{% endblock %}
+
+{% block body_base %}
+    <div id="id-logoutPageBody">
+            <form name="logoutForm" id="id-logout-form" method="POST" action="{% url "account_logout" %}">
+                <fieldset>
+                    {% csrf_token %}
+                </fieldset>
+            </form>
+    </div>
+{% endblock %}
+
+{% block page_scripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            window.document.logoutForm.submit();
+        });
+    </script>
+{% endblock %}

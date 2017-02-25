@@ -1,3 +1,5 @@
+{% load account_tags %}
+{% load i18n %}
 <!-- page header -->
             <div class="dev-page-header">
 
@@ -13,22 +15,20 @@
                 </div>
 
                 <ul class="dph-buttons pull-right">
-                    <li class="dph-button-stuck">
-                        <a href="#" class="dev-page-search-toggle">
-                            <div class="dev-page-search-toggle-icon">
-                                <span class="circle"></span>
-                                <span class="line"></span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="dph-button-stuck">
-                        <a href="#" class="dev-page-rightbar-toggle">
-                            <div class="dev-page-rightbar-toggle-icon">
-                                <span class="line-one"></span>
-                                <span class="line-two"></span>
-                            </div>
-                        </a>
-                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="dph-user-text">
+                            <i class="fa fa-user"></i> {% user_display request.user %}
+                        </li>
+                        <li >
+                            <a href="{% url 'account_settings' %}"><i class="fa fa-cog"></i> {% trans "Account" %}</a>
+                        </li>
+
+                        {% if request.user.is_superuser %}
+                            <li>
+                                <a href="admin"><i class="fa fa-cogs"></i> {% trans "Administration" %}</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
                 </ul>
 
                 <ul class="dev-page-navigation">
