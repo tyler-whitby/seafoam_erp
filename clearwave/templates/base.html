@@ -81,6 +81,9 @@
         <script type="text/javascript" src="{% static "js/dev-layout-default.js" %}"></script>
         <script type="text/javascript" src="{% static "js/dev-app.js" %}"></script>
         <!-- ./javascript -->
+        {% block scripts %}
+        {% endblock scripts %}
+
     {% endblock body_scripts %}
 
 </html>
