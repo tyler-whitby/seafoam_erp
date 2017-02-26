@@ -1,0 +1,16 @@
+{% extends "products_base.html" %}
+
+{% block body_container_content %}
+    {% if product_list %}
+        <ul>
+            {% for product in product_list %}
+                <li>{{ product.name }} | {{ product.category }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No products available.</p>
+    {% endif %}
+
+
+
+{% endblock body_container_content %}
