@@ -8,7 +8,7 @@
 
 
 {% block head_css %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/horizontal-blue-white.css" %}" id="dev-css">
+    <link rel="stylesheet" type="text/css" href="{% static "css/horizontal.css" %}" id="dev-css">
     <link rel="stylesheet" type="text/css" href="{% static "css/custom.css" %}" id="custom-css">
 {% endblock %}
 
@@ -58,14 +58,9 @@
                         {% endblock body_container_content %}
 
                         <!-- Copyright -->
-                        <div class="copyright">
-                            <div class="pull-left">
-                                &copy; 2017 <strong>{% company_name %}</strong>. All rights reserved.
-                            </div>
-                            <div class="pull-right">
-                                <a href="#">Terms of use</a> / <a href="#">Privacy Policy</a>
-                            </div>
-                        </div>
+                        {% block body_copyright %}
+                            {% include "copyright.html" %}
+                        {% endblock body_copyright %}
                         <!-- ./Copyright -->
                     </div>
                     <!-- ./page content container -->
