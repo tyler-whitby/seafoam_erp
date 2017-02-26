@@ -1,0 +1,22 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load customer_tags %}
+
+{% block head_title %}Home{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block page_breadcrumbs %}
+    <li>products</li>
+{% endblock %}
+
+        {% block body_container_page-title %}
+            <!--main title-->
+            <h1>Title</h1>
+            <!--subtitle/tag-->
+            <p>Subtitle</p>
+        {% endblock %}
+        {% block body_container_content %}
+                <p style="text-align: center">Hello!</p>
+        {% endblock %}
