@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     "pinax_theme_bootstrap",
 
     # external
-
+    "django_tables2",
     "pinax.eventlog",
     "pinax.webanalytics",
 
@@ -81,6 +81,7 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             os.path.join(PACKAGE_ROOT, "templates"),
+
         ],
         "APP_DIRS": True,
         "OPTIONS": {
