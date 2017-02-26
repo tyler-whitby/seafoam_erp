@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "clearwave/base.html" %}
 
 {% load staticfiles %}
 {% load pinax_webanalytics_tags %}
@@ -23,7 +23,7 @@
         <div class="dev-page">
 
             {% block body_header %}
-                {% include "header.html" %}
+                {% include "clearwave/header.html" %}
             {% endblock body_header %}
 
 
@@ -65,7 +65,7 @@
 
                         <!-- Copyright -->
                         {% block body_copyright %}
-                            {% include "copyright.html" %}
+                            {% include "clearwave/copyright.html" %}
                         {% endblock body_copyright %}
                         <!-- ./Copyright -->
                     </div>
@@ -78,7 +78,7 @@
             <!-- ./page container -->
 
             {% block site_footer %}
-                {% include "footer.html" %}
+                {% include "clearwave/footer.html" %}
             {% endblock site_footer %}
 
 

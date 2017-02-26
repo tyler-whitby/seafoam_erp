@@ -13,12 +13,9 @@ from django_datatables_view.base_datatable_view import BaseDatatableView
 def products_list(request):
     product_list = [product for product in Product.objects.all()]
 
-
-
-    return render(request, 'products_index.html', {'product_list': product_list,})
+    return render(request, 'products/products_index.html', {'product_list': product_list,})
 
 def add_product(request):
-
 
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -31,5 +28,5 @@ def add_product(request):
 
     else:
         form = ProductForm()
-    return render(request, 'add_product.html', {'form': form})
+    return render(request, 'products/add_product.html', {'form': form})
 

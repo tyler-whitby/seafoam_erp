@@ -1,22 +1,26 @@
-{% extends "site_base.html" %}
+{% extends "clearwave/site_base.html" %}
 
 {% load i18n %}
 {% load customer_tags %}
 
-{% block head_title %}Home{% endblock %}
+{% block head_title %}Products{% endblock %}
 
 {% block body_class %}home{% endblock %}
 
 {% block page_breadcrumbs %}
-    <li>dashboard</li>
+    <li>products</li>
+    {% block subpage_breadcrumbs %}
+    {% endblock %}
 {% endblock %}
 
         {% block body_container_page-title %}
             <!--main title-->
-            <h1>Main Dashboard</h1>
+            <h1>Products</h1>
             <!--subtitle/tag-->
-            <p>Please select a utility from above.</p>
+
         {% endblock %}
         {% block body_container_content %}
-                <p style="text-align: center">Dashboard here</p>
+                <p style="text-align: center">Hello!</p>
         {% endblock %}
+
+

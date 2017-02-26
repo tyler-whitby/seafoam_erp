@@ -47,7 +47,7 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-    'grappelli', #grappelli
+    "grappelli", #grappelli
     "account",
 
     "django.contrib.admin",
@@ -63,12 +63,11 @@ INSTALLED_APPS = [
     "pinax_theme_bootstrap",
 
     # external
-    "django_tables2",
     "pinax.eventlog",
     "pinax.webanalytics",
 
     #security
-    'stronghold',
+    "stronghold",
 
     # project
     "clearwave",
