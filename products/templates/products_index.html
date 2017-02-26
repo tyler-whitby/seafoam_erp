@@ -1,23 +1,19 @@
 {% extends "products_base.html" %}
 {% load i18n %}
 {% load staticfiles %}
-{% load render_table from django_tables2 %}
 
 
 {% block extra_head %}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
-    <script type="text/javascript" charset="utf8" src="{% static "js/plugins/datatables/jquery.dataTables.min.js" %}"></script>
-
-
 
 {% endblock extra_head %}
 
 {% block body_container_content %}
+    <div class="wrapper wrapper-white">
     <div class="table-responsive">
-    <table class="table-sortable table-striped table-bordered" id="id_product_data" data-sortable>
+    <table class="table table-sortable table-striped" id="id_product_data">
         <thead>
-            <th class="sort-header">Name</th>
-            <th class="sort-header">Category</th>
+            <th>Name</th>
+            <th>Category</th>
         </thead>
         {% for product in product_list %}
         <tr>
@@ -27,13 +23,10 @@
         {% endfor %}
     </table>
     </div>
+    </div>
 
 {% endblock body_container_content %}
 
 {% block page_scripts %}
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#id_product_data').DataTable();
-    } );
-    </script>
+
 {% endblock page_scripts %}

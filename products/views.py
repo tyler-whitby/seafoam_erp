@@ -3,8 +3,7 @@ from django.template import Context, Template, loader
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from .models import *
-from django_tables2 import RequestConfig
-from .tables import *
+
 
 from django_datatables_view.base_datatable_view import BaseDatatableView
 
