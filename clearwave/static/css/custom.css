@@ -1,4 +1,8 @@
 
+.dev-page-container {
+overflow: scroll;
+}
+
 /* login styling, centering subtitle...*/
 .dev-page .dev-page-login-block {
     text-align: center;

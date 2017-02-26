@@ -17,7 +17,16 @@
         <a href="#">Employees</a>
     </li>
     <li>
-        <a href="{% url 'products:product_list' %}">Products</a>
+        <a href="#">Products</a>
+        <ul>
+            <li>
+                <a href="{% url 'products:product_list' %}">Product List</a>
+            </li>
+            <li>
+                <a href="{% url 'products:add_product' %}">Add Product</a>
+
+            </li>
+        </ul>
     </li>
     <li>
 
