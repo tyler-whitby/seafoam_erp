@@ -47,10 +47,15 @@
                             <p>Subtitle</p>
                             {% endblock body_container_page-title %}
 
+                        {% block breadcrumbs_container %}
+                            <div class="dev-page-breadcrumbs">
                             <ul class="breadcrumb">
-                                <li><a href="#">breadcrumb</a></li>
-                                <li>nav</li>
+                                <li class="tld-breadcrumb-li">clearwave</li>
+                                {% block page_breadcrumbs %}
+                                {% endblock %}
                             </ul>
+                            </div>
+                        {% endblock breadcrumbs_container %}
                         </div>
                         <!-- ./page title -->
                         {% block body_container_content %}

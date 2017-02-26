@@ -14,6 +14,13 @@
     margin-top: 30px;
 
 }
+
+/* breadcrumbs styling */
+.dev-page-breadcrumbs .tld-breadcrumb-li {
+    color: #999999;
+}
+
+
 /* Fix sixing of user name in nav bar */
 .dev-page .dev-page-header .dph-buttons .dph-user-text {
     line-height: 55px;
