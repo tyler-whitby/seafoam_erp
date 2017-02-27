@@ -12,15 +12,23 @@ from products import urls
 
 urlpatterns = [
     url(r"^grappelli/", include('grappelli.urls')),
+
+
     url(r"^admin/", include(admin.site.urls)),
+
+    url(r"^account/login/$", acc_views.LoginView.as_view(template_name="clearwave/login.html"), name='account_login'),
+    url(r"^account/logout/$", acc_views.LogoutView.as_view(template_name="clearwave/logout.html"),
+        name='account_logout'),
+
+
     url(r"^account/", include("account.urls")),
 
     url(r"^$", TemplateView.as_view(template_name="clearwave/homepage.html"), name="home"),
 
     url(r"^products/", include('products.urls', namespace="products")),
 
-    url(r"^account/login/$", acc_views.LoginView.as_view(template_name="clearwave/login.html"), name='account_login'),
-    url(r"^account/logout/$", acc_views.LogoutView.as_view(template_name="clearwave/logout.html"), name='account_logout'),
+
+
 
 
 ]
