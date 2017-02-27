@@ -23,7 +23,7 @@ ENV_ROLE = 'development'
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "mzlu=)nawe9s*y5=isu-jobvk6*w=s$c90cpv&bqwb47q^d_nt"
+SECRET_KEY = get_env_variable(SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
