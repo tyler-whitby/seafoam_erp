@@ -34,7 +34,7 @@ DATABASES = {
         "NAME": "instance",
         'USER': "dkzxcushrldsup",
         "PASSWORD": "23ea02c00340f2e73a819ab865d473b778b0a6587ca2fed9012e9d65101074cd",
-        "HOST": "23ea02c00340f2e73a819ab865d473b778b0a6587ca2fed9012e9d65101074cd",
+        "HOST": "ec2-23-21-220-23.compute-1.amazonaws.com",
 
     }
 }
