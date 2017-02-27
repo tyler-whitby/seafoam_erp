@@ -31,7 +31,7 @@ SECRET_KEY = "mzlu=)nawe9s*y5=isu-jobvk6*w=s$c90cpv&bqwb47q^d_nt"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "instance",
+        "NAME": "d2puoak4os0gd8",
         'USER': "dkzxcushrldsup",
         "PASSWORD": "23ea02c00340f2e73a819ab865d473b778b0a6587ca2fed9012e9d65101074cd",
         "HOST": "ec2-23-21-220-23.compute-1.amazonaws.com",
