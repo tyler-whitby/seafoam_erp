@@ -27,8 +27,10 @@
                 <div class="table-responsive">
                     <table class="table table-sortable dataTable" id="id_product_data">
                         <thead>
+                            <th style="display: none;"></th>
                             <th>Name</th>
                             <th>Category</th>
+                            <th style="display: none;"></th>
                         </thead>
                         {% for product in product_list %}
                         <tr  href="#" id="row-popover{{ product.id }}" class="clickable-row product-row" data-placement="bottom">
