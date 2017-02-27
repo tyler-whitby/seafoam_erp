@@ -29,8 +29,12 @@ SECRET_KEY = "mzlu=)nawe9s*y5=isu-jobvk6*w=s$c90cpv&bqwb47q^d_nt"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "dev.db",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "instance",
+        'USER': "dkzxcushrldsup",
+        "PASSWORD": "23ea02c00340f2e73a819ab865d473b778b0a6587ca2fed9012e9d65101074cd",
+        "HOST": "23ea02c00340f2e73a819ab865d473b778b0a6587ca2fed9012e9d65101074cd",
+
     }
 }
 
