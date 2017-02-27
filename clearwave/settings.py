@@ -16,14 +16,14 @@ def get_env_variable(var_name):
 		error_msg = "Set the {} environment variable".format(var_name)
 		raise django.core.exceptions.ImproperlyConfigured(error_msg)
 
-ENV_ROLE = get_env_variable('ENV_ROLE')
+ENV_ROLE = 'development'
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env_variable('SECRET_KEY')
+SECRET_KEY = "mzlu=)nawe9s*y5=isu-jobvk6*w=s$c90cpv&bqwb47q^d_nt"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
