@@ -28,6 +28,9 @@ def add_product(request):
         form = ProductForm(request.POST)
 
         if form.is_valid():
+            name= form.cleaned_data['name']
+            category = form.cleaned_data['category']
+            product, created = Product.objects.get_or_create(name=name,category=category)
             product.save()
             return HttpResponseRedirect('/products/')
 
