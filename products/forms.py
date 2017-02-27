@@ -21,8 +21,6 @@ class ProductForm(ModelForm):
         self.fields['category'].required = False
 
     def clean(self):
-        cleaned_data = super(ProductForm, self).clean()
-        name = self.cleaned_data['name']
         category = self.cleaned_data.get('category')
         new_category = self.cleaned_data.get('new_category')
         if not category and not new_category:
@@ -33,4 +31,4 @@ class ProductForm(ModelForm):
 
 
 
-
+        return super(ProductForm, self).clean()

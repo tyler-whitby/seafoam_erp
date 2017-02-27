@@ -25,28 +25,16 @@
 
         <div class="wrapper wrapper-white">
                 <div class="table-responsive">
-                    <table class="table table-sortable table-hover" id="id_product_data">
+                    <table class="table table-sortable table-striped" id="id_product_data">
                         <thead>
                             <th>Name</th>
                             <th>Category</th>
                         </thead>
                         {% for product in product_list %}
-                        <tr  href="#" id="row-popover{{ product.id }}" class="clickable-row product-row" data-placement="bottom">
-
-                                <td style="display:none;">{{ product.id }}</td>
-                                <td headers="name">{{ product.name }}</td>
-                                <td headers="category">{{ product.category }}</td>
-
-                                <td headers="edit-btn" style="display: block;">
-                                    <div style="width:1px;overflow: visible;">
-                                        <button headers="edit-btn" class="btn btn-clean btn-primary">Edit Row</button>
-
-                                    </div>
-                                </td>
+                        <tr>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.category }}</td>
                         </tr>
-
-
-
                         {% endfor %}
                     </table>
                 </div>
@@ -54,71 +42,10 @@
 
 
 
-<div class="hide" id="popover_content" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-   <div class="wrapper wrapper-white">
-
-    <p id="actions">Total Actions</p>
-    <p id="sales">Total Sales</p>
-    <p id="top_customers">Top Customers</p>
-    <p id="top_employees">Top Employees</p>
-
-   </div>
-</div>
-
-
-
-
-
 
 
 {% endblock body_container_content %}
 
-<form action="{% url 'products:add_product' %}" method="post" class="">
-            {% csrf_token %}
-            {{ form.non_field_errors }}
-            <div class="row">
-                {% for field in form %}
-                        <div class="form-group">
-                            {{ field.errors }}
-                            {{ field.label_tag }}
-
-                            {{ field }}
-                        </div>
-                {% endfor %}
-            </div>
-        <input type="submit" value="Submit" />
-</form>
-
-
 {% block page_scripts %}
-<script>
 
-    $(".product-row").each(function () {
-        $(this).popover({
-            html: true,
-            title: 'Product Stats',
-            trigger: 'manual',
-            content: function () {
-                return $("#popover_content").html();
-            }
-        });
-
-    });
-</script>
-<script>
-    $(".product-row").on('click', function (e) {
-        var cell = e.target
-        var header = $(cell).attr("headers");
-        console.log(header)
-        if ( header != "edit-btn" ) {
-            return $(this).popover('toggle');
-        };
-    });
-</script>
 {% endblock page_scripts %}
-
-
-<script>
-
-
-</script>

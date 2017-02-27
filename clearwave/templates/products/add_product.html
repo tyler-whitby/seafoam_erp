@@ -24,19 +24,16 @@
             <div id="table-tab" class="tab-pane">
         -->
 
-
-
+ <div class="wrapper wrapper-white">
+            <div id="form-tab" class="tab-pane">
                  <form action="{% url 'products:add_product' %}" method="post" class="">
-                      {{ form.non_field_errors }}
-                 <div class="wrapper wrapper-white">
                     {% csrf_token %}
-
                     <div class="row">
+                        {{ form.non_field_errors }}
                         {% for field in form %}
-                            {{ field.errors }}
                             <div class="col-md-4">
                                 <div class="form-group">
-
+                                    {{ field.errors }}
                                     {{ field.label_tag }}
 
                                     {{ field }}
@@ -44,12 +41,12 @@
                             </div>
                         {% endfor %}
                     </div>
-
-                <input type="submit" value="Submit" />
-
                 </div>
+                <input type="submit" value="Submit" />
               </form>
 
+
+    </div>
 
 
 
