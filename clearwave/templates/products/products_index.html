@@ -6,6 +6,9 @@
 {% block extra_head %}
 
     <style type="text/css">
+        body.modal-open {
+            overflow: hidden;
+        }
         .page-title {
             padding-bottom: 5px;
         }
@@ -19,11 +22,50 @@
         .tooltip-row{
             white-space: nowrap;
         }
+        .panel {
+            min-width: 200px;
+            max-width: 240px;
+            pa
+        }
+        #detail-panel-wrapper {
+            padding: unset;
+            padding-top: 55px;
+        }
+        #detail-panel-title {
+            line-height: 20px;
+        }
+        .modal {
+            overflow: visible;
+        }
+        .modal-body {
+            overflow-y: visible;
+        }
+        .dropdown-menu open {
+            position: relative;
+            z-index: 2000;
+            height: 100px;
+        }
+
 
 
 
 
     </style>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // check where the shoppingcart-div is
+            var offset = $('#detail-box').offset();
+
+            $(window).scroll(function () {
+                var scrollTop = $(window).scrollTop(); // check the visible top of the browser
+
+                if (offset.top<scrollTop) $('#detail-box').addClass('fixed');
+                else $('#detail-box').removeClass('fixed');
+            });
+        });
+    </script>
 {% endblock extra_head %}
 
 
@@ -99,11 +141,30 @@
         <div class="add-product-container">
             <button class="btn btn-primary btn-sm" id="add-product-btn" type="button" data-target="#add-product-modal" data-toggle="modal">Add Product</button>
         </div>
-    </div>
+        </div>
     </div>
 
+        <div class="col-md-3" id="detail-panel-column">
+            <div class="wrapper" id="detail-panel-wrapper">
+                <div class="panel panel-default" id="detail-panel" data-spy="affix">
+                    <div class="panel-heading">
+                        <h4 class="panel-title" id="detail-panel-title">Product Detail</h4>
+                    </div>
+                        <div class="panel-body">
+                            <p class="detail-row">Total Actions: <span id="actions"></span></p>
+                            <p class="detail-row">Total Sales: <span id="sales"></span></p>
+                            <p class="detail-row">Top Customers: <span id="top_customers"><</span></p>
+                            <p class="detail-row">Top Employees: <span id="top_employees"></span></p>
+                            <div class="row">
+                                <button type="button" class="btn btn-primary btn-sm" data-target="#edit-product-modal" data-toggle="modal">Edit Product</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
 
-        <div class="col-md-10 col-md-offset-2 centered">
+
+        <div class="col-md-9 centered">
             <div class="table-responsive">
                 <table class="table table-sortable table-hover table-striped" id="id_product_data">
                     <thead>
@@ -128,7 +189,7 @@
         </div>
     </div>
 
-
+<!--
     <div class="hide" id="popover_content" class='popover' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="popover-content">
 
@@ -151,7 +212,7 @@
 
         </div>
     </div>
-
+-->
 
 
     <div class="modal fade" id="edit-product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;margin-top: 100px;">
@@ -208,6 +269,14 @@
 
 {% block page_scripts %}
     <script>
+        $('.selectpicker').selectpicker({
+            dropupAuto: false
+        });
+        $('.dropdown-menu').css("height", "200px")
+    </script>
+
+
+    <script>
 
         $(".product-row").each(function () {
 
@@ -230,25 +299,54 @@
             $("#sales").text(sales);
             $("#top_customers").text(top_cust);
             $("#top_employees").text(top_emp);
-            $(this).popover({
-                html: true,
-                title: namecat,
-                trigger: 'manual',
-                placement: 'left',
-                content: function () {
-                    return $("#popover_content").html();
-                }
-            });
+            //$(this).popover({
+            //    html: true,
+            //    title: namecat,
+            //    trigger: 'manual',
+            //    placement: 'left',
+            //    content: function () {
+            //        return $("#popover_content").html();
+            //    }
+            //});
 
         });
 
-        $(".product-row").on('click', function (e) {
-            $('.product-row').not(this).each( function(){
-                $(this).popover('hide');
-            });
-            return $(this).popover('toggle');
+//        $(".product-row").on('click', function (e) {
+ //           $('.product-row').not(this).each( function(){
+  //              $(this).popover('hide');
+   //         });
+    //        return $(this).popover('toggle');
+     //   });
+        $(".product-row").on('click', function(){
+            var $this = $(this);
+            var rowData = function (e) {
+                var nameCell = $this.find('td:nth-child(2)');
+                var catCell = $this.find('td:nth-child(3)');
+                return {
+                    name: nameCell.text(),
+                    cat: catCell.text()
+                };
+            };
+            data = rowData();
+            namecat = data.name + " (" + data.cat + ")";
+            var actions = 4;
+            var sales = 2;
+            var top_cust = 'John Paul';
+            var top_emp = 'Jah Rule';
+            $("#actions").text(actions);
+            $("#sales").text(sales);
+            $("#top_customers").text(top_cust);
+            $("#top_employees").text(top_emp);
+            $("#detail-panel-title").text(namecat)
         });
+
+
+
+
     </script>
+
+
+
 
     <script type="text/javascript">
         {% if form_error == 'invalid_form' %}
