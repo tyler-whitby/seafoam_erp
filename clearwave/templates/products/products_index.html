@@ -28,12 +28,12 @@
             <div class="panel-body tab-content">
                 <div id="table-tab" class="tab-pane">
             -->
-
-    <div id='add-btn-row' class="row pull-left" style="padding-left: 25px;">
-        <div class="add-product-container">
-            <button class="btn btn-primary btn-sm" id="add-product-btn" type="button" data-target="#add-product-modal" data-toggle="modal">Add Product</button>
-        </div>
+    <div id='add-btn-row' class="       row pull-left" style="padding-left: 25px;">
+            <div class="add-product-container">
+                <button class="btn btn-primary btn-sm" id="add-product-btn" type="button" data-target="#add-product-modal" data-toggle="modal">Add Product</button>
+            </div>
     </div>
+
 
 
     <div class="modal fade" id="add-product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;margin-top: 100px;">
@@ -80,7 +80,10 @@
 
 
     <div class="wrapper wrapper-white" id="product-table-wrapper">
-        <div class="col-md-8 col-md-offset-2 centered">
+
+
+
+        <div class="col-md-6 col-md-offset-3 centered">
         <div class="table-responsive">
             <table class="table table-sortable table-hover" id="id_product_data">
                 <thead>
@@ -89,7 +92,7 @@
                 <th>Category</th>
                 </thead>
                 {% for product in product_list %}
-                    <tr  href="#" id="product-row{{ product.id }}" class="clickable-row product-row" data-placement="right">
+                    <tr  href="#" id="product-row{{ product.id }}" class="clickable-row product-row">
 
                         <td style="display:none;">{{ product.id }}</td>
                         <td headers="name">{{ product.name }}</td>
@@ -106,23 +109,27 @@
     </div>
 
 
-
-    <div class="hide" id="popover_content" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="hide" id="popover_content" class='popover' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="wrapper wrapper-white">
 
+            <div class="row">
             <div class="product-row-popover-edit-form">
-                <p>Edit Row Form Goes Here</p>
 
+                <p>---Edit Row Form Goes Here---</p>
+            </div>
 
             </div>
             <div class="product-row-popover-stats">
-                <p id="actions">Total Actions</p>
-                <p id="sales">Total Sales</p>
-                <p id="top_customers">Top Customers</p>
-                <p id="top_employees">Top Employees</p>
+                <div class="row">
+                <p>Total Actions: </p><p id="actions"></p>
+                <p>Total Sales: </p><p id="sales"></p>
+                <p>Top Customers: </p><p id="top_customers"></p>
+                <p>Top Employees: </p><p id="top_employees"></p>
+                </div>
             </div>
         </div>
     </div>
+
 
 
 
@@ -138,11 +145,31 @@
 <script>
 
     $(".product-row").each(function () {
-        var cell = $(this).find('td:last-child');
-        $(cell).popover({
+
+        var $this = $(this);
+        var rowData = function (e) {
+            var nameCell = $this.find('td:nth-child(2)');
+            var catCell = $this.find('td:nth-child(3)');
+            return {
+                name: nameCell.text(),
+                cat: catCell.text()
+            };
+        };
+        data = rowData();
+        namecat = data.name + " (" + data.cat + ")";
+        var actions = 4;
+        var sales = 2;
+        var top_cust = 'John Paul';
+        var top_emp = 'Jah Rule';
+        $("#actions").text(actions);
+        $("#sales").text(sales);
+        $("#top_customers").text(top_cust);
+        $("#top_employees").text(top_emp);
+        $(this).popover({
             html: true,
-            title: 'Product Stats',
+            title: namecat,
             trigger: 'manual',
+            placement: 'left',
             content: function () {
                 return $("#popover_content").html();
             }
@@ -151,8 +178,11 @@
     });
 
     $(".product-row").on('click', function (e) {
-        return $(cell).popover('toggle');
+        $('.product-row').not(this).each( function(){
+            $(this).popover('hide');
         });
+        return $(this).popover('toggle');
+    });
 </script>
 
 {% endblock page_scripts %}
