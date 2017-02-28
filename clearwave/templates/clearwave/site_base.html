@@ -42,6 +42,7 @@
                     <div class="container">
 
                         <!-- page title -->
+                        {% block body_container_outer_page-title %}
                         <div class="page-title">
                             {% block body_container_page-title %}
                             <h1>Title</h1>
@@ -58,6 +59,7 @@
                             </div>
                         {% endblock breadcrumbs_container %}
                         </div>
+                        {% endblock %}
                         <!-- ./page title -->
                         {% block body_container_content %}
 

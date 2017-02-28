@@ -29,10 +29,12 @@
         }
         #detail-panel-wrapper {
             padding: unset;
-            padding-top: 55px;
+        }
+        #detail-panel {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.22);
         }
         #detail-panel-title {
-            line-height: 20px;
+            line-height: 30px;
         }
         .modal {
             overflow: visible;
@@ -137,11 +139,10 @@
     <div class="wrapper wrapper-white" id="product-table-wrapper">
 
     <div class="col-md-12">
-        <div id='add-btn-row' class="row pull-right" style="padding-left: 25px;">
         <div class="add-product-container">
-            <button class="btn btn-primary btn-sm" id="add-product-btn" type="button" data-target="#add-product-modal" data-toggle="modal">Add Product</button>
+            <button class="btn btn-primary btn-sm btn-clean pull-right" id="add-product-btn" type="button" data-target="#add-product-modal" data-toggle="modal">Add Product</button>
         </div>
-        </div>
+
     </div>
 
         <div class="col-md-3" id="detail-panel-column">
@@ -355,6 +356,3 @@
     </script>
 
 {% endblock page_scripts %}
-
-
-
