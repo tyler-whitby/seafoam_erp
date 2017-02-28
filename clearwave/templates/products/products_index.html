@@ -5,6 +5,25 @@
 
 {% block extra_head %}
 
+    <style type="text/css">
+        .page-title {
+            padding-bottom: 5px;
+        }
+
+        .popover-content{
+            padding: unset;
+        }
+        .popover-content .wrapper {
+            padding: 10px 20px 20px 15px;
+        }
+        .tooltip-row{
+            white-space: nowrap;
+        }
+
+
+
+
+    </style>
 {% endblock extra_head %}
 
 
@@ -28,12 +47,6 @@
             <div class="panel-body tab-content">
                 <div id="table-tab" class="tab-pane">
             -->
-    <div id='add-btn-row' class="       row pull-left" style="padding-left: 25px;">
-            <div class="add-product-container">
-                <button class="btn btn-primary btn-sm" id="add-product-btn" type="button" data-target="#add-product-modal" data-toggle="modal">Add Product</button>
-            </div>
-    </div>
-
 
 
     <div class="modal fade" id="add-product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;margin-top: 100px;">
@@ -44,7 +57,7 @@
                     <h4 class="modal-title" id="myModalLabel">Add A Product</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{% url 'products:add_product' %}" method="post" class="">
+                    <form action="{% url 'products:product_list' %}" method="post" class="">
                         {{ form.non_field_errors }}
                         <div class="wrapper wrapper-white">
                             {% csrf_token %}
@@ -81,50 +94,102 @@
 
     <div class="wrapper wrapper-white" id="product-table-wrapper">
 
-
-
-        <div class="col-md-6 col-md-offset-3 centered">
-        <div class="table-responsive">
-            <table class="table table-sortable table-hover" id="id_product_data">
-                <thead>
-                <th style="display: none;"></th>
-                <th>Name</th>
-                <th>Category</th>
-                </thead>
-                {% for product in product_list %}
-                    <tr  href="#" id="product-row{{ product.id }}" class="clickable-row product-row">
-
-                        <td style="display:none;">{{ product.id }}</td>
-                        <td headers="name">{{ product.name }}</td>
-                        <td headers="category">{{ product.category }}</td>
-
-                    </tr>
-
-
-
-                {% endfor %}
-            </table>
+    <div class="col-md-12">
+        <div id='add-btn-row' class="row pull-right" style="padding-left: 25px;">
+        <div class="add-product-container">
+            <button class="btn btn-primary btn-sm" id="add-product-btn" type="button" data-target="#add-product-modal" data-toggle="modal">Add Product</button>
         </div>
+    </div>
+    </div>
+
+
+        <div class="col-md-10 col-md-offset-2 centered">
+            <div class="table-responsive">
+                <table class="table table-sortable table-hover table-striped" id="id_product_data">
+                    <thead>
+                    <th style="display: none;"></th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    </thead>
+                    {% for product in product_list %}
+                        <tr  href="#" id="product-row{{ product.id }}" class="clickable-row product-row">
+
+                            <td style="display:none;">{{ product.id }}</td>
+                            <td headers="name">{{ product.name }}</td>
+                            <td headers="category">{{ product.category }}</td>
+
+                        </tr>
+
+
+
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
 
 
     <div class="hide" id="popover_content" class='popover' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="wrapper wrapper-white">
+        <div class="popover-content">
 
-            <div class="row">
-            <div class="product-row-popover-edit-form">
 
-                <p>---Edit Row Form Goes Here---</p>
+            <div class="wrapper">
+
+                <div class="product-row-popover-stats">
+                    <div class="row">
+                        <p class="tooltip-row">Total Actions: <span id="actions"></span></p>
+                        <p class="tooltip-row">Total Sales: <span id="sales"></span></p>
+                        <p class="tooltip-row">Top Customers: <span id="top_customers"><</span></p>
+                        <p class="tooltip-row">Top Employees: <span id="top_employees"></span></p>
+                    </div>
+                      <div class="row">
+                        <button type="button" class="btn btn-primary btn-sm" data-target="#edit-product-modal" data-toggle="modal">Edit Product</button>
+                    </div>
+                    </div>
+                </div>
             </div>
 
-            </div>
-            <div class="product-row-popover-stats">
-                <div class="row">
-                <p>Total Actions: </p><p id="actions"></p>
-                <p>Total Sales: </p><p id="sales"></p>
-                <p>Top Customers: </p><p id="top_customers"></p>
-                <p>Top Employees: </p><p id="top_employees"></p>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="edit-product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;margin-top: 100px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Product</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group-one-unit">
+                        <form action="{% url 'products:product_list' %}" method="post" class="">
+                            {{ form.non_field_errors }}
+                            <div class="wrapper wrapper-white" style="padding-left: 15px; padding-right: 15px;padding-top: 0px;">
+                                {% csrf_token %}
+
+
+                                {% for field in form %}
+                                    <div class="row">
+                                        {{ field.errors }}
+
+                                        <div class="form-group">
+
+                                            {{ field.label_tag }}
+
+                                            {{ field }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+
+                                <input type="submit" value="Submit" />
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
                 </div>
             </div>
         </div>
@@ -142,48 +207,54 @@
 
 
 {% block page_scripts %}
-<script>
+    <script>
 
-    $(".product-row").each(function () {
+        $(".product-row").each(function () {
 
-        var $this = $(this);
-        var rowData = function (e) {
-            var nameCell = $this.find('td:nth-child(2)');
-            var catCell = $this.find('td:nth-child(3)');
-            return {
-                name: nameCell.text(),
-                cat: catCell.text()
+            var $this = $(this);
+            var rowData = function (e) {
+                var nameCell = $this.find('td:nth-child(2)');
+                var catCell = $this.find('td:nth-child(3)');
+                return {
+                    name: nameCell.text(),
+                    cat: catCell.text()
+                };
             };
-        };
-        data = rowData();
-        namecat = data.name + " (" + data.cat + ")";
-        var actions = 4;
-        var sales = 2;
-        var top_cust = 'John Paul';
-        var top_emp = 'Jah Rule';
-        $("#actions").text(actions);
-        $("#sales").text(sales);
-        $("#top_customers").text(top_cust);
-        $("#top_employees").text(top_emp);
-        $(this).popover({
-            html: true,
-            title: namecat,
-            trigger: 'manual',
-            placement: 'left',
-            content: function () {
-                return $("#popover_content").html();
-            }
+            data = rowData();
+            namecat = data.name + " (" + data.cat + ")";
+            var actions = 4;
+            var sales = 2;
+            var top_cust = 'John Paul';
+            var top_emp = 'Jah Rule';
+            $("#actions").text(actions);
+            $("#sales").text(sales);
+            $("#top_customers").text(top_cust);
+            $("#top_employees").text(top_emp);
+            $(this).popover({
+                html: true,
+                title: namecat,
+                trigger: 'manual',
+                placement: 'left',
+                content: function () {
+                    return $("#popover_content").html();
+                }
+            });
+
         });
 
-    });
-
-    $(".product-row").on('click', function (e) {
-        $('.product-row').not(this).each( function(){
-            $(this).popover('hide');
+        $(".product-row").on('click', function (e) {
+            $('.product-row').not(this).each( function(){
+                $(this).popover('hide');
+            });
+            return $(this).popover('toggle');
         });
-        return $(this).popover('toggle');
-    });
-</script>
+    </script>
+
+    <script type="text/javascript">
+        {% if form_error == 'invalid_form' %}
+            $('#add-product-modal').modal('show');
+        {% endif %}
+    </script>
 
 {% endblock page_scripts %}
 

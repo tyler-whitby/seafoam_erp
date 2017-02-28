@@ -15,12 +15,20 @@ def products_list(request):
     product_list = [product for product in Product.objects.all()]
 
     if request.method == 'POST':
-        if form.is_valid:
+        form = ProductForm(request.POST)
+
+        if form.is_valid():
             form.save()
+            return HttpResponseRedirect('/products/')
 
-    form = ProductForm()
+        else:
+            form_error = 'invalid_form'
+    else:
+        form = ProductForm()
+        form_error = 'none'
 
-    return render(request, 'products/products_index.html', {'product_list': product_list, 'form':form})
+
+    return render(request, 'products/products_index.html', {'product_list': product_list, 'form':form, 'form_error':form_error})
 
 def add_product(request):
 
