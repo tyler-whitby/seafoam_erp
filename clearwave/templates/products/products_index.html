@@ -7,65 +7,122 @@
 
 {% endblock extra_head %}
 
+
 {% block subpage_breadcrumbs %}
 {% endblock %}
 
+
+{% block body_container_page-title_extend %}
+
+
+{% endblock %}
+
 {% block body_container_content %}
-<!--
-    <div class="tabs">
-        <ul class="nav nav-tabs" role="tablist">
-        <li><a href="#table-tab">View Products</a> </li>
-        <li><a href="#form-tab">Add Product</a></li>
-        </ul>
+    <!--
+        <div class="tabs">
+            <ul class="nav nav-tabs" role="tablist">
+            <li><a href="#table-tab">View Products</a> </li>
+            <li><a href="#form-tab">Add Product</a></li>
+            </ul>
 
-        <div class="panel-body tab-content">
-            <div id="table-tab" class="tab-pane">
-        -->
+            <div class="panel-body tab-content">
+                <div id="table-tab" class="tab-pane">
+            -->
 
-
-        <div class="wrapper wrapper-white">
-                <div class="table-responsive">
-                    <table class="table table-sortable table-hover" id="id_product_data">
-                        <thead>
-                            <th style="display: none;"></th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th style="display: none;"></th>
-                        </thead>
-                        {% for product in product_list %}
-                        <tr  href="#" id="row-popover{{ product.id }}" class="clickable-row product-row" data-placement="bottom">
-
-                                <td style="display:none;">{{ product.id }}</td>
-                                <td headers="name">{{ product.name }}</td>
-                                <td headers="category">{{ product.category }}</td>
-
-                                <td headers="edit-btn" style="display: block;">
-                                    <div style="width:1px;overflow: visible;">
-                                        <button headers="edit-btn" class="btn btn-clean btn-primary">Edit Row</button>
-
-                                    </div>
-                                </td>
-                        </tr>
-
-
-
-                        {% endfor %}
-                    </table>
-                </div>
+    <div id='add-btn-row' class="row pull-left" style="padding-left: 25px;">
+        <div class="add-product-container">
+            <button class="btn btn-primary btn-sm" id="add-product-btn" type="button" data-target="#add-product-modal" data-toggle="modal">Add Product</button>
         </div>
+    </div>
+
+
+    <div class="modal fade" id="add-product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;margin-top: 100px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add A Product</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'products:add_product' %}" method="post" class="">
+                        {{ form.non_field_errors }}
+                        <div class="wrapper wrapper-white">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                {% for field in form %}
+                                    {{ field.errors }}
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+
+                                            {{ field.label_tag }}
+
+                                            {{ field }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <input type="submit" value="Submit" />
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
-<div class="hide" id="popover_content" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-   <div class="wrapper wrapper-white">
 
-    <p id="actions">Total Actions</p>
-    <p id="sales">Total Sales</p>
-    <p id="top_customers">Top Customers</p>
-    <p id="top_employees">Top Employees</p>
 
-   </div>
-</div>
+
+    <div class="wrapper wrapper-white" id="product-table-wrapper">
+        <div class="col-md-8 col-md-offset-2 centered">
+        <div class="table-responsive">
+            <table class="table table-sortable table-hover" id="id_product_data">
+                <thead>
+                <th style="display: none;"></th>
+                <th>Name</th>
+                <th>Category</th>
+                </thead>
+                {% for product in product_list %}
+                    <tr  href="#" id="product-row{{ product.id }}" class="clickable-row product-row" data-placement="right">
+
+                        <td style="display:none;">{{ product.id }}</td>
+                        <td headers="name">{{ product.name }}</td>
+                        <td headers="category">{{ product.category }}</td>
+
+                    </tr>
+
+
+
+                {% endfor %}
+            </table>
+        </div>
+        </div>
+    </div>
+
+
+
+    <div class="hide" id="popover_content" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="wrapper wrapper-white">
+
+            <div class="product-row-popover-edit-form">
+                <p>Edit Row Form Goes Here</p>
+
+
+            </div>
+            <div class="product-row-popover-stats">
+                <p id="actions">Total Actions</p>
+                <p id="sales">Total Sales</p>
+                <p id="top_customers">Top Customers</p>
+                <p id="top_employees">Top Employees</p>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -75,28 +132,14 @@
 
 {% endblock body_container_content %}
 
-<form action="{% url 'products:add_product' %}" method="post" class="">
-            {% csrf_token %}
-            {{ form.non_field_errors }}
-            <div class="row">
-                {% for field in form %}
-                        <div class="form-group">
-                            {{ field.errors }}
-                            {{ field.label_tag }}
-
-                            {{ field }}
-                        </div>
-                {% endfor %}
-            </div>
-        <input type="submit" value="Submit" />
-</form>
 
 
 {% block page_scripts %}
 <script>
 
     $(".product-row").each(function () {
-        $(this).popover({
+        var cell = $(this).find('td:last-child');
+        $(cell).popover({
             html: true,
             title: 'Product Stats',
             trigger: 'manual',
@@ -106,21 +149,13 @@
         });
 
     });
-</script>
-<script>
+
     $(".product-row").on('click', function (e) {
-        var cell = e.target
-        var header = $(cell).attr("headers");
-        console.log(header)
-        if ( header != "edit-btn" ) {
-            return $(this).popover('toggle');
-        };
-    });
+        return $(cell).popover('toggle');
+        });
 </script>
+
 {% endblock page_scripts %}
 
 
-<script>
 
-
-</script>

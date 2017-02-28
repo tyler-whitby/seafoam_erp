@@ -28,7 +28,7 @@ def add_product(request):
         form = ProductForm(request.POST)
 
         if form.is_valid():
-            product.save()
+            form.save()
             return HttpResponseRedirect('/products/')
 
     else:
