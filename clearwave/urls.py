@@ -8,6 +8,7 @@ from django.contrib import admin
 from account import views as acc_views
 
 from products import urls
+from clients import urls
 
 
 urlpatterns = [
@@ -23,6 +24,7 @@ urlpatterns = [
     url(r"^$", TemplateView.as_view(template_name="clearwave/homepage.html"), name="home"),
 
     url(r"^products/", include('products.urls', namespace="products")),
+    url(r"^clients/", include('clients.urls', namespace='clients')),
 
 
 

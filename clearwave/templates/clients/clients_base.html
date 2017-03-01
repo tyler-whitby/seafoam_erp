@@ -1,0 +1,28 @@
+{% extends "clearwave/site_base.html" %}
+
+{% load i18n %}
+{% load customer_tags %}
+
+{% block head_title %}Products{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block page_breadcrumbs %}
+    <li>clients</li>
+    {% block subpage_breadcrumbs %}
+    {% endblock %}
+{% endblock %}
+
+        {% block body_container_page-title %}
+            <!--main title-->
+            <h1>Clients</h1>
+            <!--subtitle/tag-->
+            {% block body_container_page-title_extend %}
+            {% endblock %}
+
+        {% endblock %}
+        {% block body_container_content %}
+                <p style="text-align: center">Hello!</p>
+        {% endblock %}
+
+
