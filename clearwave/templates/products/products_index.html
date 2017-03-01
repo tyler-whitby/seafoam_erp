@@ -9,10 +9,6 @@
         body.modal-open {
             overflow: hidden;
         }
-        .page-title {
-            padding-bottom: 5px;
-        }
-
         .popover-content{
             padding: unset;
         }
@@ -24,8 +20,7 @@
         }
         .panel {
             min-width: 200px;
-            max-width: 240px;
-            pa
+            max-width: 260px;
         }
         #detail-panel-wrapper {
             padding: unset;
@@ -82,19 +77,9 @@
 {% endblock %}
 
 {% block body_container_content %}
-    <!--
-        <div class="tabs">
-            <ul class="nav nav-tabs" role="tablist">
-            <li><a href="#table-tab">View Products</a> </li>
-            <li><a href="#form-tab">Add Product</a></li>
-            </ul>
-
-            <div class="panel-body tab-content">
-                <div id="table-tab" class="tab-pane">
-            -->
 
 
-    <div class="modal fade" id="add-product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;margin-top: 100px;">
+    <div  id="add-product-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;margin-top: 100px;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -139,12 +124,12 @@
 
     <div class="wrapper wrapper-white" id="product-table-wrapper">
 
-    <div class="col-md-12">
-        <div class="add-product-container">
-            <button class="btn btn-primary btn-sm btn-clean pull-right" id="add-product-btn" type="button" data-target="#add-product-modal" data-toggle="modal">Add Product</button>
-        </div>
+        <div class="col-md-12" id="add-product-btn-row">
+            <div class="add-product-container">
+                <button class="btn btn-primary btn-sm btn-clean pull-right" id="add-product-btn" type="button" data-target="#add-product-modal" data-toggle="modal">Add Product</button>
+            </div>
 
-    </div>
+        </div>
 
         <div class="col-md-3" id="detail-panel-column">
             <div class="wrapper" id="detail-panel-wrapper">
@@ -155,10 +140,10 @@
                         <div class="panel-body">
                             <p class="detail-row">Total Actions: <span id="actions"></span></p>
                             <p class="detail-row">Total Sales: <span id="sales"></span></p>
-                            <p class="detail-row">Top Customers: <span id="top_customers"><</span></p>
+                            <p class="detail-row">Top Customers: <span id="top_customers"></span></p>
                             <p class="detail-row">Top Employees: <span id="top_employees"></span></p>
-                            <div class="row">
-                                <button type="button" class="btn btn-primary btn-sm" data-target="#edit-product-modal" data-toggle="modal">Edit Product</button>
+                            <div class="row text-center" style="padding: 1px;">
+                                <button type="button" class="btn btn-primary" data-target="#edit-product-modal" data-toggle="modal">Edit Product</button>
                             </div>
                         </div>
                 </div>
@@ -191,33 +176,6 @@
         </div>
     </div>
 
-<!--
-    <div class="hide" id="popover_content" class='popover' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="popover-content">
-
-
-            <div class="wrapper">
-
-                <div class="product-row-popover-stats">
-                    <div class="row">
-                        <p class="tooltip-row">Total Actions: <span id="actions"></span></p>
-                        <p class="tooltip-row">Total Sales: <span id="sales"></span></p>
-                        <p class="tooltip-row">Top Customers: <span id="top_customers"><</span></p>
-                        <p class="tooltip-row">Top Employees: <span id="top_employees"></span></p>
-                    </div>
-                      <div class="row">
-                        <button type="button" class="btn btn-primary btn-sm" data-target="#edit-product-modal" data-toggle="modal">Edit Product</button>
-                    </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
--->
-
-
-
     <div class="modal fade" id="edit-product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;margin-top: 100px;">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -241,6 +199,7 @@
                                             {{ field.label_tag }}
 
                                             {{ field }}
+
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -279,46 +238,6 @@
 
 
     <script>
-
-        $(".product-row").each(function () {
-
-            var $this = $(this);
-            var rowData = function (e) {
-                var nameCell = $this.find('td:nth-child(2)');
-                var catCell = $this.find('td:nth-child(3)');
-                return {
-                    name: nameCell.text(),
-                    cat: catCell.text()
-                };
-            };
-            data = rowData();
-            namecat = data.name + " (" + data.cat + ")";
-            var actions = 4;
-            var sales = 2;
-            var top_cust = 'John Paul';
-            var top_emp = 'Jah Rule';
-            $("#actions").text(actions);
-            $("#sales").text(sales);
-            $("#top_customers").text(top_cust);
-            $("#top_employees").text(top_emp);
-            //$(this).popover({
-            //    html: true,
-            //    title: namecat,
-            //    trigger: 'manual',
-            //    placement: 'left',
-            //    content: function () {
-            //        return $("#popover_content").html();
-            //    }
-            //});
-
-        });
-
-//        $(".product-row").on('click', function (e) {
- //           $('.product-row').not(this).each( function(){
-  //              $(this).popover('hide');
-   //         });
-    //        return $(this).popover('toggle');
-     //   });
         $(".product-row").on('click', function(){
             var $this = $(this);
             var rowData = function (e) {
@@ -341,13 +260,7 @@
             $("#top_employees").text(top_emp);
             $("#detail-panel-title").text(namecat)
         });
-
-
-
-
     </script>
-
-
 
 
     <script type="text/javascript">
