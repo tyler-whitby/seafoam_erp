@@ -13,7 +13,22 @@ from django_datatables_view.base_datatable_view import BaseDatatableView
 def products_list(request):
     product_list = [product for product in Product.objects.all()]
 
-    return render(request, 'products/products_index.html', {'product_list': product_list,})
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/products/')
+
+        else:
+            form_error = 'invalid_form'
+    else:
+        form = ProductForm()
+        form_error = 'none'
+
+
+    return render(request, 'products/products_index.html', {'product_list': product_list, 'form':form, 'form_error':form_error})
 
 def add_product(request):
 
@@ -29,4 +44,3 @@ def add_product(request):
     else:
         form = ProductForm()
     return render(request, 'products/add_product.html', {'form': form})
-

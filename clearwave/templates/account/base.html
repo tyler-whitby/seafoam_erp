@@ -1,0 +1,46 @@
+{% extends "clearwave/site_base.html" %}
+
+{% load i18n %}
+
+{% block body_class %}account{% endblock %}
+
+
+{% block body_container %}
+<div class="dev-page-content">
+  <!-- page content container -->
+  <div class="container">
+
+
+    <div class="wrapper">
+      <div class="col-md-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"><strong>{% trans "Settings" %}</strong></h4>
+          </div>
+          <div class="list-group">
+            <a class="list-group-item account-settings" href="{% url "account_settings" %}">
+              {% trans "Account" %}
+            </a>
+            <a class="list-group-item account-password" href="{% url "account_password" %}">
+              {% trans "Change password" %}
+            </a>
+            <a class="list-group-item account-delete" href="{% url "account_delete" %}">
+              {% trans "Delete account" %}
+            </a>
+          </div>
+        </div>
+      </div>
+
+  
+
+      <div class="col-md-10">
+        <div class="wrapper wrapper-white">
+          {% block account_forms %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
