@@ -1,0 +1,38 @@
+Database 1: Customers
+Company, Customer, Phone, Email, Address, Status (Active, Pending, Leads)
+
+Database 2: Actions
+Date, Employee, Company, Customer, Action (Phone, Email, Meeting), Product, Type, Sale (Yes, No)
+
+Database 3: Employees
+Employee, Phone, Email, Password
+
+Database 4: Products
+Product, Type
+
+Dashboard Header (Horizontal Layout)
+Tabs: "Customers", "Actions", "Employees", "Products"
+
+"Customers", SubTab 1:
+Customers DataTable (filter, add, edit, or remove Customers)
+Button and pop-up for each row:
+First Action, Last Action, Total Actions
+First Sale, Last Sale, Total Sales
+Top Products, Top Employees
+
+"Actions", SubTab 1:
+Actions DataTable (filter, add, edit, or remove Actions)
+
+"Employees", SubTab 1:
+Employees DataTable (filter, add, edit, or remove Employees)
+Button and pop-up for each row:
+Total Actions, Total Sales
+Top Customers, Top Products
+
+"Products", SubTab 1:
+Products DataTable (filter, add, edit, or remove Products)
+Button and pop-up for each row:
+Total Actions, Total Sales
+Top Customers, Top Employees
+
+
