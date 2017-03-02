@@ -4,55 +4,11 @@
 
 
 {% block extra_head %}
-
-    <style type="text/css">
-        body.modal-open {
-            overflow: hidden;
-        }
-        .popover-content{
-            padding: unset;
-        }
-        .popover-content .wrapper {
-            padding: 10px 20px 20px 15px;
-        }
-        .tooltip-row{
-            white-space: nowrap;
-        }
-        .panel {
-            min-width: 200px;
-            max-width: 260px;
-        }
-        #detail-panel-wrapper {
-            padding: unset;
-        }
-        #detail-panel {
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.22);
-        }
-        #detail-panel-title {
-            line-height: 30px;
-        }
-        .modal {
-            overflow: visible;
-        }
-        .modal-body {
-            overflow-y: visible;
-        }
-        .dropdown-menu open {
-            position: relative;
-            z-index: 2000;
-            height: 100px;
-        }
-
-
-
-
-
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="{% static "css/table-view.css" %}" id="table-css">
 
     <script type="text/javascript">
         $(document).ready(function() {
-            // check where the shoppingcart-div is
+            // check where the detail box is
             var offset = $('#detail-box').offset();
 
             $(window).scroll(function () {
@@ -79,7 +35,7 @@
 {% block body_container_content %}
 
 
-    <div  id="add-product-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;margin-top: 100px;">
+    <div id="add-product-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;margin-top: 100px;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

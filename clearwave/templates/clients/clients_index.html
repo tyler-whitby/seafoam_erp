@@ -12,8 +12,58 @@
 {% endblock %}
 
 {% block body_container_content %}
-    <div class="wrapper wrapper-white">
-    <p>Clients list</p>
+    <div class="wrapper wrapper-white" id="product-table-wrapper">
+
+        <div class="col-md-12" id="add-product-btn-row">
+            <div class="add-product-container">
+                <button class="btn btn-primary btn-sm btn-clean pull-right" id="add-product-btn" type="button" data-target="#add-product-modal" data-toggle="modal">Add Product</button>
+            </div>
+
+        </div>
+
+        <div class="col-md-3" id="detail-panel-column">
+            <div class="wrapper" id="detail-panel-wrapper">
+                <div class="panel panel-default" id="detail-panel" data-spy="affix">
+                    <div class="panel-heading">
+                        <h4 class="panel-title" id="detail-panel-title">Client Detail</h4>
+                    </div>
+                        <div class="panel-body">
+                            <p class="detail-row">Total Actions: <span id="actions"></span></p>
+                            <p class="detail-row">Total Sales: <span id="sales"></span></p>
+                            <p class="detail-row">Top Customers: <span id="top_customers"></span></p>
+                            <p class="detail-row">Top Employees: <span id="top_employees"></span></p>
+                            <div class="row text-center" style="padding: 1px;">
+                                <button type="button" class="btn btn-primary" data-target="#edit-product-modal" data-toggle="modal">Edit Product</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-9 centered">
+            <div class="table-responsive">
+                <table class="table table-sortable table-hover table-striped" id="id_product_data">
+                    <thead>
+                    <th style="display: none;"></th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    </thead>
+                    {% for product in product_list %}
+                        <tr  href="#" id="product-row{{ product.id }}" class="clickable-row product-row">
+
+                            <td style="display:none;">{{ product.id }}</td>
+                            <td headers="name">{{ product.name }}</td>
+                            <td headers="category">{{ product.category }}</td>
+
+                        </tr>
+
+
+
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
     </div>
 
 
