@@ -69,9 +69,13 @@ INSTALLED_APPS = [
     #security
     "stronghold",
 
+    #custom Models
+    'address',
+
     # project
     "clearwave",
     "products",
+    "clients",
 ]
 
 
