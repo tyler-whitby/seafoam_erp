@@ -1,14 +1,16 @@
-{% extends "products/products_base.html" %}
+{% extends "clients/clients_base.html" %}
 {% load i18n %}
 {% load staticfiles %}
 
 
 {% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/table-view.css" %}" id="table-css">
+
 
 {% endblock extra_head %}
 
 {% block subpage_breadcrumbs %}
-    <li></li>
+    <li>client list</li>
 {% endblock %}
 
 {% block body_container_content %}

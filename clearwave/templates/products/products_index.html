@@ -6,19 +6,8 @@
 {% block extra_head %}
     <link rel="stylesheet" type="text/css" href="{% static "css/table-view.css" %}" id="table-css">
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            // check where the detail box is
-            var offset = $('#detail-box').offset();
+    <script type="text/javascript" src="{% static "js/detail-box-scroll.js" %}"></script>
 
-            $(window).scroll(function () {
-                var scrollTop = $(window).scrollTop(); // check the visible top of the browser
-
-                if (offset.top<scrollTop) $('#detail-box').addClass('fixed');
-                else $('#detail-box').removeClass('fixed');
-            });
-        });
-    </script>
 {% endblock extra_head %}
 
 
