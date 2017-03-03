@@ -18,6 +18,7 @@ urlpatterns = [
     url(r"^account/login/$", acc_views.LoginView.as_view(template_name="clearwave/login.html"), name='account_login'),
     url(r"^account/logout/$", acc_views.LogoutView.as_view(template_name="clearwave/logout.html"),
         name='account_logout'),
+    url(r"^account/signup/$", acc_views.SignupView.as_view(template_name="account/signup.html"), name='signup'),
 
     url(r"^account/", include("account.urls")),
 

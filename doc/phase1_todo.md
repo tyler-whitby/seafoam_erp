@@ -11,6 +11,9 @@
         * Manager sends email invites with company PIN
         * sign up page requiring valid PIN
         * email address as username
+    * Then employee model
+* Interactions
+    * Employee <--> Client
 
 * Implement the remaining models
   * Develop tests for validity, longevity
