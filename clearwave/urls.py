@@ -27,8 +27,6 @@ urlpatterns = [
     url(r"^products/", include('products.urls', namespace="products")),
     url(r"^clients/", include('clients.urls', namespace='clients')),
 
-
-
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
