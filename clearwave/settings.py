@@ -49,6 +49,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     "grappelli", #grappelli
     "account",
+    "registration_links",
 
     "django.contrib.admin",
     "django.contrib.auth",
@@ -173,6 +174,10 @@ ACCOUNT_USE_AUTH_AUTHENTICATE = True
 AUTHENTICATION_BACKENDS = [
     "account.auth_backends.UsernameAuthenticationBackend",
 ]
+
+ACCOUNT_ACTIVATION_DAYS = 7 #One week account activation waiver
+
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

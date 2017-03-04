@@ -18,6 +18,11 @@ urlpatterns = [
     url(r"^account/login/$", acc_views.LoginView.as_view(template_name="clearwave/login.html"), name='account_login'),
     url(r"^account/logout/$", acc_views.LogoutView.as_view(template_name="clearwave/logout.html"),
         name='account_logout'),
+    url(r'^register/(?P<code>\w+)$', 'registration_links.views.check_registration_link', name="check_registration_link"),
+    url(r'^accounts/register/$', 'registration.views.register',
+        {'backend': 'registration.backends.simple', },
+        name='registration_register'),
+    url(r"^registration/", include("registration.backends.hmac.urls") ),
     url(r"^account/signup/$", acc_views.SignupView.as_view(template_name="account/signup.html"), name='signup'),
 
     url(r"^account/", include("account.urls")),
