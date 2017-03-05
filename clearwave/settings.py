@@ -49,7 +49,6 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     "grappelli", #grappelli
     "account",
-    "registration_links",
 
     "django.contrib.admin",
     "django.contrib.auth",
