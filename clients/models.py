@@ -5,47 +5,63 @@ from address.forms import AddressField
 
 class PhoneNumber(models.Model):
     TYPE_OPTIONS = (
-        ("MOBILE",'mobile',),
-        ("HOME",'home',),
-        ("OFFICE",'office',),
+        ("MOBILE",'Mobile'),
+        ("HOME",'Home',),
+        ("OFFICE",'Office',),
     )
     phone_type = models.CharField(choices=TYPE_OPTIONS,default=TYPE_OPTIONS[0],max_length=6)
     phone_number = models.CharField(max_length=14)
-    person = models.ForeignKey("Client", null=False, blank=False)
     class Meta:
         app_label = 'clients'
 
+    def __str__(self):
+        return self.phone_number
+
 class EmailAddress(models.Model):
-    address = models.EmailField()
-    tag = models.CharField(max_length=32)
-    person = models.ForeignKey("Client", null=False, blank=False)
+    email_address = models.EmailField()
+    email_tag = models.CharField(max_length=32)
     class Meta:
         app_label = 'clients'
+
+    def __str__(self):
+        return self.email_address
 
 class ClientAddress(models.Model):
     address = AddressField()
     TYPE_OPTIONS = (
-        ("OFFICE",'office',),
-        ("HOME",'home'),
-        ("SHIPPING",'shipping',),
-        ("BILLING",'billing',),
+        ("OFFICE",'Office',),
+        ("HOME",'Home'),
+        ("SHIPPING",'Shipping',),
+        ("BILLING",'Billing',),
     )
     address_type = models.CharField(choices=TYPE_OPTIONS, default=TYPE_OPTIONS[0],max_length=8)
-    person = models.ForeignKey("Client", null=False, blank=False)
     class Meta:
         app_label = 'clients'
+
+    def __str__(self):
+        return self.address_type
+
+class Company(models.Model):
+    company_name = models.CharField(max_length=128)
+    class Meta:
+        app_label = 'clients'
+
+    def __str__(self):
+        return self.company_name
+
 
 class Client(models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
+    company = models.ForeignKey(Company)
     phones = models.ManyToManyField(PhoneNumber)
     emails = models.ManyToManyField(EmailAddress)
     addresses = models.ManyToManyField(ClientAddress)
     STATUS_OPTIONS =(
-        ("PENDING",'pending'),
-        ("LEAD",'lead'),
-        ("ACTIVE",'active'),
-        ("DISMISSED",'dismissed'),
+        ("PENDING",'Pending'),
+        ("LEAD",'Lead'),
+        ("ACTIVE",'Active'),
+        ("DISMISSED",'Dismissed'),
     )
     client_status = models.CharField(max_length=16,choices=STATUS_OPTIONS,default=STATUS_OPTIONS[0])
     class Meta:
@@ -53,4 +69,4 @@ class Client(models.Model):
 
     def __str__(self):
         full_name = "{0} {1}".format(self.first_name,self.last_name)
-        return self.name
+        return self.full_name
