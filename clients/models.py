@@ -10,6 +10,7 @@ class PhoneNumber(models.Model):
         ("OFFICE",'office',),
     )
     phone_type = models.CharField(choices=TYPE_OPTIONS,default=TYPE_OPTIONS[0],max_length=6)
+    phone_number = models.CharField(max_length=14)
     person = models.ForeignKey("Client", null=False, blank=False)
     class Meta:
         app_label = 'clients'
@@ -37,9 +38,9 @@ class ClientAddress(models.Model):
 class Client(models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
-    phone = models.ManyToManyField(PhoneNumber)
-    email = models.ManyToManyField(EmailAddress)
-    address = models.ManyToManyField(ClientAddress)
+    phones = models.ManyToManyField(PhoneNumber)
+    emails = models.ManyToManyField(EmailAddress)
+    addresses = models.ManyToManyField(ClientAddress)
     STATUS_OPTIONS =(
         ("PENDING",'pending'),
         ("LEAD",'lead'),
@@ -49,3 +50,7 @@ class Client(models.Model):
     client_status = models.CharField(max_length=16,choices=STATUS_OPTIONS,default=STATUS_OPTIONS[0])
     class Meta:
         app_label = 'clients'
+
+    def __str__(self):
+        full_name = "{0} {1}".format(self.first_name,self.last_name)
+        return self.name

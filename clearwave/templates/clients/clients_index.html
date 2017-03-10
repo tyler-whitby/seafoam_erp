@@ -32,7 +32,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add A Product</h4>
+                        <h4 class="modal-title" id="myModalLabel">Add A Client</h4>
                     </div>
                     <div class="modal-body">
                         <form action="{% url 'products:product_list' %}" method="post" class="">
@@ -70,7 +70,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Edit Product</h4>
+                        <h4 class="modal-title" id="myModalLabel">Edit Client</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group-one-unit">
@@ -132,15 +132,16 @@
                     <thead>
                     <th style="display: none;"></th>
                     <th>Name</th>
-                    <th>Category</th>
+                    <th>Company</th>
+                    <th>Status</th>
                     </thead>
                     {% for client in client_list %}
                         <tr  href="#" id="client-row{{ client.id }}" class="clickable-row client-row">
 
                             <td style="display:none;">{{ client.id }}</td>
                             <td headers="name">{{ client.name }}</td>
-                            <td headers="category">{{ client.category }}</td>
-
+                            <td headers="company">{{ client.company }}</td>
+                            <td headers="status">{{ client.client_status}}</td>
                         </tr>
 
 
