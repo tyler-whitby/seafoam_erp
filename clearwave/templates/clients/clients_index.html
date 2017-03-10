@@ -35,24 +35,15 @@
                         <h4 class="modal-title" id="myModalLabel">Add A Client</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="{% url 'products:product_list' %}" method="post" class="">
+                        <form action="." method="post" class="">
                             {{ form.non_field_errors }}
                             <div class="wrapper wrapper-white">
-                                {% csrf_token %}
-
+                            {% csrf_token %}
                                 <div class="row">
-                                    {% for field in form %}
-                                        {{ field.errors }}
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-
-                                                {{ field.label_tag }}
-
-                                                {{ field }}
-                                            </div>
-                                        </div>
-                                    {% endfor %}
+                                    {{ form }}
                                 </div>
+
+
 
                                 <input type="submit" value="Submit" />
 
@@ -74,30 +65,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group-one-unit">
-                            <form action="{% url 'products:product_list' %}" method="post" class="">
-                                {{ form.non_field_errors }}
-                                <div class="wrapper wrapper-white" style="padding-left: 15px; padding-right: 15px;padding-top: 0px;">
-                                    {% csrf_token %}
-
-                                    {% for field in form %}
-                                        <div class="row">
-                                            {{ field.errors }}
-
-                                            <div class="form-group">
-
-                                                {{ field.label_tag }}
-
-                                                {{ field }}
-
-                                            </div>
-                                        </div>
-                                    {% endfor %}
 
 
-                                    <input type="submit" value="Submit" />
-
-                                </div>
-                            </form>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -1,20 +1,26 @@
 from django.shortcuts import render
 from django.template import Context, Template, loader
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from .forms import *
 from .models import *
 
 # Create your views here.
 
-def clients_index(request):
-    form = ClientForm()
-    form_error = None
+class ClientsIndexView(CreateView):
+    template_name = 'products/products_index.html'
+    form_class = ClientForm
 
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        phone_form = ClientPhoneForm()
 
-
-
-    return render(request, 'clients/clients_index.html', {'form': form, 'form_error': form_error})
+        return self.render_to_response(
+            self.get_context_data(forms=form,
+                                  phone_form=phone_form)
+        )
 
 def add_client(request):
 
